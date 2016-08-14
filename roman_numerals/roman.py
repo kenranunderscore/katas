@@ -32,6 +32,9 @@ base_conversions = {
 }
 
 
+base_numerals = {v: k for k, v in base_conversions.items()}
+
+
 base_numbers = sorted(base_conversions.keys(), reverse=True)
 
 
@@ -55,3 +58,22 @@ def to_roman(arabic_number):
 def from_roman(roman_numeral):
     if not roman_numeral_validator.match(roman_numeral):
         raise InvalidRomanNumeralError('invalid roman numeral')
+
+    resulting_number = 0
+    i = 0
+    while i < len(roman_numeral):
+        current_letter = roman_numeral[i]
+
+        if i + 1 < len(roman_numeral):
+            potential_base_numeral = current_letter + roman_numeral[i + 1]
+            if potential_base_numeral in base_numerals:
+                resulting_number += base_numerals[potential_base_numeral]
+                i += 2
+            else:
+                resulting_number += base_numerals[current_letter]
+                i += 1
+        else:
+            resulting_number += base_numerals[roman_numeral[i]]
+            i += 1
+
+    return resulting_number

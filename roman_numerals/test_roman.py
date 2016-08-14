@@ -104,3 +104,8 @@ def test_too_many_repeated_numeral_letters():
     for numeral in ('MMMM', 'DD', 'CCCC', 'LL', 'XXXX', 'VV', 'IIII'):
         with pytest.raises(roman.InvalidRomanNumeralError):
             roman.from_roman(numeral)
+
+
+def test_numerals_are_converted_correctly():
+    for digit, numeral in extended_known_values:
+        assert roman.from_roman(numeral) == digit
