@@ -69,11 +69,9 @@ def from_roman(roman_numeral):
             if potential_base_numeral in base_numerals:
                 resulting_number += base_numerals[potential_base_numeral]
                 i += 2
-            else:
-                resulting_number += base_numerals[current_letter]
-                i += 1
-        else:
-            resulting_number += base_numerals[roman_numeral[i]]
-            i += 1
+                continue
+
+        resulting_number += base_numerals[roman_numeral[i]]
+        i += 1
 
     return resulting_number
