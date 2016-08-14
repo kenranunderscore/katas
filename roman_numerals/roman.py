@@ -1,9 +1,18 @@
+import re
+
+
 class NumberOutOfRangeError(Exception):
     pass
 
 
 class InvalidRomanNumeralError(Exception):
     pass
+
+
+roman_numeral_validator = re.compile(
+    '^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$',
+    re.IGNORECASE
+)
 
 
 base_conversions = {
@@ -44,4 +53,5 @@ def to_roman(arabic_number):
 
 
 def from_roman(roman_numeral):
-    raise InvalidRomanNumeralError('invalid roman numeral')
+    if not roman_numeral_validator.match(roman_numeral):
+        raise InvalidRomanNumeralError('invalid roman numeral')
