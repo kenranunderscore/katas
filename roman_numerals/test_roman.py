@@ -98,3 +98,9 @@ def test_number_greater_than_3999_raises_exception():
 def test_numbers_are_converted_correctly():
     for digit, numeral in extended_known_values:
         assert roman.to_roman(digit) == numeral
+
+
+def test_too_many_repeated_numeral_letters():
+    for numeral in ('MMMM', 'DD', 'CCCC', 'LL', 'XXXX', 'VV', 'IIII'):
+        with pytest.raises(roman.InvalidRomanNumeralError):
+            roman.from_roman(numeral)

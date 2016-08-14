@@ -2,6 +2,10 @@ class NumberOutOfRangeError(Exception):
     pass
 
 
+class InvalidRomanNumeralError(Exception):
+    pass
+
+
 base_conversions = {
     1: 'I',
     4: 'IV',
@@ -37,3 +41,7 @@ def to_roman(arabic_number):
             resulting_numeral += base_conversions[num]
 
     return resulting_numeral
+
+
+def from_roman(roman_numeral):
+    raise InvalidRomanNumeralError('invalid roman numeral')
