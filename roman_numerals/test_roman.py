@@ -109,3 +109,8 @@ def test_too_many_repeated_numeral_letters():
 def test_numerals_are_converted_correctly():
     for digit, numeral in extended_known_values:
         assert roman.from_roman(numeral) == digit
+
+
+def test_sanity_check_to_then_from_roman():
+    for i in range(1, 3999):
+        assert i == roman.from_roman(roman.to_roman(i))
