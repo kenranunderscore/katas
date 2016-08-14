@@ -3,15 +3,15 @@ import roman
 
 
 single_digit_values = (
-    (1, 'i'),
-    (2, 'ii'),
-    (3, 'iii'),
-    (4, 'iv'),
-    (5, 'v'),
-    (6, 'vi'),
-    (7, 'vii'),
-    (8, 'viii'),
-    (9, 'ix')
+    (1, 'I'),
+    (2, 'II'),
+    (3, 'III'),
+    (4, 'IV'),
+    (5, 'V'),
+    (6, 'VI'),
+    (7, 'VII'),
+    (8, 'VIII'),
+    (9, 'IX')
 )
 
 
@@ -77,7 +77,7 @@ extended_known_values = (
 
 def test_single_arabic_digits_are_converted_correctly():
     for digit, numeral in single_digit_values:
-        assert roman.to_roman(digit).upper() == numeral.upper()
+        assert roman.to_roman(digit) == numeral
 
 
 def test_negative_number_raises_exception():
