@@ -80,7 +80,7 @@ def test_single_arabic_digits_are_converted_correctly():
         assert roman.to_roman(digit).upper() == numeral.upper()
 
 
-def test_negative_value_raises_exception():
+def test_negative_number_raises_exception():
     with pytest.raises(roman.NumberOutOfRangeError):
         roman.to_roman(-2)
 
@@ -90,11 +90,11 @@ def test_zero_raises_exception():
         roman.to_roman(0)
 
 
-def test_value_greater_than_3999_raises_exception():
+def test_number_greater_than_3999_raises_exception():
     with pytest.raises(roman.NumberOutOfRangeError):
         roman.to_roman(4000)
 
 
-def test_known_values_are_converted_correctly():
+def test_numbers_are_converted_correctly():
     for digit, numeral in extended_known_values:
         assert roman.to_roman(digit) == numeral
