@@ -1,3 +1,4 @@
+from collections import OrderedDict
 import re
 
 
@@ -15,21 +16,21 @@ roman_numeral_validator = re.compile(
 )
 
 
-base_conversions = {
-    1: 'I',
-    4: 'IV',
-    5: 'V',
-    9: 'IX',
-    10: 'X',
-    40: 'XL',
-    50: 'L',
-    90: 'XC',
-    100: 'C',
-    400: 'CD',
-    500: 'D',
-    900: 'CM',
-    1000: 'M'
-}
+base_conversions = OrderedDict((
+    (1000, 'M'),
+    (900, 'CM'),
+    (500, 'D'),
+    (400, 'CD'),
+    (100, 'C'),
+    (90, 'XC'),
+    (50, 'L'),
+    (40, 'XL'),
+    (10, 'X'),
+    (9, 'IX'),
+    (5, 'V'),
+    (4, 'IV'),
+    (1, 'I')
+))
 
 
 base_numerals = {v: k for k, v in base_conversions.items()}
@@ -47,10 +48,10 @@ def to_roman(arabic_number):
         raise NumberOutOfRangeError('number is too big')
 
     resulting_numeral = ''
-    for num in base_numbers:
-        while arabic_number >= num:
-            arabic_number -= num
-            resulting_numeral += base_conversions[num]
+    for key in base_conversions.keys():
+        while arabic_number >= key:
+            arabic_number -= key
+            resulting_numeral += base_conversions[key]
 
     return resulting_numeral
 
