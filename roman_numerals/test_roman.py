@@ -76,41 +76,64 @@ extended_known_values = (
 
 
 def test_single_arabic_digits_are_converted_correctly():
+    """Ensures that integers between 1 and 9 are converted
+       correctly to their Roman numeral counterparts.
+    """
     for digit, numeral in single_digit_values:
         assert roman.to_roman(digit) == numeral
 
 
 def test_negative_number_raises_exception():
+    """Ensures that negative integers raise an error
+       that indicates that the value was out of Roman
+       numeral range.
+    """
     with pytest.raises(roman.NumberOutOfRangeError):
         roman.to_roman(-2)
 
 
 def test_zero_raises_exception():
+    """Ensures that 0 raises an 'out of range' error."""
     with pytest.raises(roman.NumberOutOfRangeError):
         roman.to_roman(0)
 
 
 def test_number_greater_than_3999_raises_exception():
+    """Ensures that a value greater than 3999
+       raises an 'out of range' error.
+    """
     with pytest.raises(roman.NumberOutOfRangeError):
         roman.to_roman(4000)
 
 
 def test_numbers_are_converted_correctly():
+    """Ensures that some given test integers are
+       converted correctly to Roman numerals.
+    """
     for digit, numeral in extended_known_values:
         assert roman.to_roman(digit) == numeral
 
 
 def test_too_many_repeated_numeral_letters():
+    """Ensures that Roman numeral letters which are
+       repeated too many times are rejected.
+    """
     for numeral in ('MMMM', 'DD', 'CCCC', 'LL', 'XXXX', 'VV', 'IIII'):
         with pytest.raises(roman.InvalidRomanNumeralError):
             roman.from_roman(numeral)
 
 
 def test_numerals_are_converted_correctly():
+    """Ensures that some given test numerals are
+       converted correctly to integers.
+    """
     for digit, numeral in extended_known_values:
         assert roman.from_roman(numeral) == digit
 
 
 def test_sanity_check_to_then_from_roman():
+    """Ensures that from_roman is a left inverse
+       for to_roman.
+    """
     for i in range(1, 3999):
         assert i == roman.from_roman(roman.to_roman(i))

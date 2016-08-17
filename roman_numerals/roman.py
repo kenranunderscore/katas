@@ -3,10 +3,12 @@ import re
 
 
 class NumberOutOfRangeError(Exception):
+    """Is raised when an integer is lesser than 1 or greater than 3999."""
     pass
 
 
 class InvalidRomanNumeralError(Exception):
+    """Is raised when a Roman numeral is malformed."""
     pass
 
 
@@ -37,6 +39,7 @@ base_numerals = {v: k for k, v in base_conversions.items()}
 
 
 def to_roman(arabic_number):
+    """Converts a positive integer between 1 and 3999 to a Roman numeral."""
     if arabic_number < 0:
         raise NumberOutOfRangeError('negative values are not allowed')
     elif arabic_number == 0:
@@ -54,6 +57,7 @@ def to_roman(arabic_number):
 
 
 def from_roman(roman_numeral):
+    """Converts Roman numerals between 1 and 3999 to an integer."""
     if not roman_numeral_validator.match(roman_numeral):
         raise InvalidRomanNumeralError('invalid roman numeral')
 
