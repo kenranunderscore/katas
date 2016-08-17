@@ -36,9 +36,6 @@ base_conversions = OrderedDict((
 base_numerals = {v: k for k, v in base_conversions.items()}
 
 
-base_numbers = sorted(base_conversions.keys(), reverse=True)
-
-
 def to_roman(arabic_number):
     if arabic_number < 0:
         raise NumberOutOfRangeError('negative values are not allowed')
@@ -60,19 +57,12 @@ def from_roman(roman_numeral):
     if not roman_numeral_validator.match(roman_numeral):
         raise InvalidRomanNumeralError('invalid roman numeral')
 
-    resulting_number = 0
-    i = 0
-    while i < len(roman_numeral):
-        current_letter = roman_numeral[i]
+    numbers = [base_numerals[numeral] for numeral in roman_numeral]
+    total = 0
+    for current_n, next_n in zip(numbers, numbers[1:]):
+        if current_n >= next_n:
+            total += current_n
+        else:
+            total -= current_n
 
-        if i + 1 < len(roman_numeral):
-            potential_base_numeral = current_letter + roman_numeral[i + 1]
-            if potential_base_numeral in base_numerals:
-                resulting_number += base_numerals[potential_base_numeral]
-                i += 2
-                continue
-
-        resulting_number += base_numerals[roman_numeral[i]]
-        i += 1
-
-    return resulting_number
+    return total + numbers[-1]
