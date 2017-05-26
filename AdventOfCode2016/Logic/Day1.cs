@@ -6,15 +6,13 @@
     using System.Windows;
     using System.Windows.Media;
 
-    public class Day1
+    public class Day1 : DayWithInput<string>
     {
         private static readonly Matrix right = new Matrix(0, -1, 1, 0, 0, 0);
         private static readonly Matrix left = new Matrix(0, 1, -1, 0, 0, 0);
-        private readonly string input;
 
-        public Day1(string input)
+        public Day1(string input) : base(input)
         {
-            this.input = input;
         }
 
         public int Distance()

@@ -4,7 +4,7 @@
     using System.Linq;
     using System.Windows;
 
-    public class Day2
+    public class Day2 : DayWithInput<IEnumerable<string>>
     {
         public static readonly IReadOnlyDictionary<string, Vector> NumpadMapping
             = new Dictionary<string, Vector>
@@ -47,17 +47,14 @@
                 { 'R', new Vector(1, 0) }
             };
 
-        private readonly IEnumerable<string> lines;
-
-        public Day2(IEnumerable<string> lines)
+        public Day2(IEnumerable<string> lines) : base(lines)
         {
-            this.lines = lines;
         }
 
         public string DecipherCode(IReadOnlyDictionary<string, Vector> mapping)
         {
             string currentCode = string.Empty;
-            foreach (string line in lines)
+            foreach (string line in input)
             {
                 currentCode += CalculateCipherFromLine(line, string.IsNullOrEmpty(currentCode) ? "5" : currentCode, mapping);
             }
