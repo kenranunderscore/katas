@@ -11,7 +11,7 @@
         public void Day7_Part1()
         {
             var day7 = new Day7(Utils.ReadLines("day7_data.txt"));
-            Assert.That(day7.NumberOfIPsThatSupportTLS, Is.EqualTo(0));
+            Assert.That(day7.NumberOfIPsThatSupportTLS, Is.EqualTo(115));
         }
 
         [Test]
