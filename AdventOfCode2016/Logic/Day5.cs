@@ -1,5 +1,6 @@
 ﻿namespace Logic
 {
+    using System.Linq;
     using System.Security.Cryptography;
     using System.Text;
 
@@ -26,6 +27,33 @@
 
             return password;
         }
+
+        public string DecodePasswordPart2()
+        {
+            char[] password = new char[8];
+            int i = 0;
+            while (!IsFull(password))
+            {
+                string hash = HexMD5Hash($"{input}{i}");
+                if (hash.StartsWith("00000"))
+                {
+                    char c = hash[5];
+                    if (char.IsDigit(c))
+                    {
+                        int n = int.Parse(c.ToString());
+                        if (n <= 7 && password[n] == '\0')
+                        {
+                            password[n] = hash[6];
+                        }
+                    }
+                }
+                ++i;
+            }
+
+            return new string(password);
+        }
+
+        private static bool IsFull(char[] password) => !password.Any(c => c == '\0');
 
         private static string HexMD5Hash(string value)
         {
