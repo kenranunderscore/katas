@@ -54,6 +54,7 @@
     <Compile Include="Day4_Test.cs" />
     <Compile Include="Day6_Test.cs" />
     <Compile Include="Day5_Test.cs" />
+    <Compile Include="Day7_Test.cs" />
     <Compile Include="Inputs\Utils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -77,6 +78,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Inputs\day6_data.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Inputs\day7_data.txt" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -7,10 +7,7 @@
 
     public class Day6 : DayWithInput<IEnumerable<string>>
     {
-        public Day6(IEnumerable<string> input)
-            : base(input)
-        {
-        }
+        public Day6(IEnumerable<string> input) : base(input) { }
 
         public string DeciperMessagePart1() => DecipherMessage(MostFrequentCharacter);
 

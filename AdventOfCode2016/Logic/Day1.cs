@@ -11,9 +11,7 @@
         private static readonly Matrix right = new Matrix(0, -1, 1, 0, 0, 0);
         private static readonly Matrix left = new Matrix(0, 1, -1, 0, 0, 0);
 
-        public Day1(string input) : base(input)
-        {
-        }
+        public Day1(string input) : base(input) { }
 
         public int Distance()
         {

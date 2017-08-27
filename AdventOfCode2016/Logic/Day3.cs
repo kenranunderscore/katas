@@ -6,9 +6,7 @@
 
     public class Day3 : DayWithInput<IEnumerable<string>>
     {
-        public Day3(IEnumerable<string> input) : base(input)
-        {
-        }
+        public Day3(IEnumerable<string> input) : base(input) { }
 
         public int NoOfValidTriangles => input
             .Select(l => l.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries))

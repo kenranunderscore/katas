@@ -6,9 +6,7 @@
 
     public class Day4 : DayWithInput<IEnumerable<string>>
     {
-        public Day4(IEnumerable<string> input) : base(input)
-        {
-        }
+        public Day4(IEnumerable<string> input) : base(input) { }
 
         public int SumOfSectorIdsOfRealRooms => input
             .Where(IsRoomReal)

@@ -47,9 +47,7 @@
                 { 'R', new Vector(1, 0) }
             };
 
-        public Day2(IEnumerable<string> lines) : base(lines)
-        {
-        }
+        public Day2(IEnumerable<string> lines) : base(lines) { }
 
         public string DecipherCode(IReadOnlyDictionary<string, Vector> mapping)
         {

@@ -6,10 +6,7 @@
 
     public class Day5 : DayWithInput<string>
     {
-        public Day5(string input)
-            : base(input)
-        {
-        }
+        public Day5(string input) : base(input) { }
 
         public string DecodePassword()
         {
