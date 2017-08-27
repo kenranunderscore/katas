@@ -17,7 +17,7 @@
         public void Day5_Part2()
         {
             Day5 day5 = new Day5("uqwqemis");
-            Assert.That(day5.DecodePasswordPart2(), Is.EqualTo("1a3099aa"));
+            Assert.That(day5.DecodePasswordPart2(), Is.EqualTo("694190cd"));
         }
     }
 }
