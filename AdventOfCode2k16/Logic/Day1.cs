@@ -1,64 +1,68 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Text;
+﻿namespace Logic
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Numerics;
 
-//namespace Logic
-//{
-//    public class Day1 : DayWithInput<string>
-//    {
-//        private static readonly Matrix right = new Matrix(0, -1, 1, 0, 0, 0);
-//        private static readonly Matrix left = new Matrix(0, 1, -1, 0, 0, 0);
+    public class Day1 : DayWithInput<string>
+    {
+        private static readonly Matrix3x2 right = new Matrix3x2(0, -1, 1, 0, 0, 0);
+        private static readonly Matrix3x2 left = new Matrix3x2(0, 1, -1, 0, 0, 0);
 
-//        public Day1(string input) : base(input) { }
+        public Day1(string input) : base(input) { }
 
-//        public int Distance()
-//        {
-//            Vector currentDirection = new Vector(0, 1);
-//            Vector currentPosition = new Vector(0, 0);
+        public int Distance()
+        {
+            var currentDirection = new Vector2(0, 1);
+            var currentPosition = new Vector2(0, 0);
 
-//            var commands =
-//                input
-//                    .Split(new[] { ", " }, StringSplitOptions.RemoveEmptyEntries)
-//                    .Select(x => new Tuple<Matrix, int>(x[0] == 'R' ? right : left, int.Parse(x.Substring(1))));
-//            foreach (var command in commands)
-//            {
-//                currentDirection = AdvanceDirection(currentDirection, command);
-//                currentPosition += currentDirection * command.Item2;
-//            }
+            var commands =
+                input
+                    .Split(new[] { ", " }, StringSplitOptions.RemoveEmptyEntries)
+                    .Select(x => (x[0] == 'R' ? right : left, int.Parse(x.Substring(1))));
+            foreach (var command in commands)
+            {
+                currentDirection = AdvanceDirection(currentDirection, command);
+                currentPosition += currentDirection * command.Item2;
+            }
 
-//            return DistanceFromOrigin(currentPosition);
-//        }
+            return DistanceFromOrigin(currentPosition);
+        }
 
-//        public int DistanceToFirstDoublyVisitedLocation()
-//        {
-//            Vector currentDirection = new Vector(0, 1);
-//            Vector currentPosition = new Vector(0, 0);
-//            HashSet<Vector> visitedLocations = new HashSet<Vector> { currentPosition };
+        public int DistanceToFirstDoublyVisitedLocation()
+        {
+            var currentDirection = new Vector2(0, 1);
+            var currentPosition = new Vector2(0, 0);
+            var visitedLocations = new HashSet<Vector2> { currentPosition };
 
-//            var commands =
-//                input
-//                    .Split(new[] { ", " }, StringSplitOptions.RemoveEmptyEntries)
-//                    .Select(x => new Tuple<Matrix, int>(x[0] == 'R' ? right : left, int.Parse(x.Substring(1))));
-//            foreach (var command in commands)
-//            {
-//                currentDirection = AdvanceDirection(currentDirection, command);
-//                for (int i = 0; i < command.Item2; ++i)
-//                {
-//                    currentPosition += currentDirection;
-//                    if (visitedLocations.Contains(currentPosition))
-//                    {
-//                        return DistanceFromOrigin(currentPosition);
-//                    }
+            var commands =
+                input
+                    .Split(new[] { ", " }, StringSplitOptions.RemoveEmptyEntries)
+                    .Select(x => (x[0] == 'R' ? right : left, int.Parse(x.Substring(1))));
+            foreach (var command in commands)
+            {
+                currentDirection = AdvanceDirection(currentDirection, command);
+                for (int i = 0; i < command.Item2; ++i)
+                {
+                    currentPosition += currentDirection;
+                    if (visitedLocations.Contains(currentPosition))
+                    {
+                        return DistanceFromOrigin(currentPosition);
+                    }
 
-//                    visitedLocations.Add(currentPosition);
-//                }
-//            }
+                    visitedLocations.Add(currentPosition);
+                }
+            }
 
-//            return DistanceFromOrigin(currentPosition);
-//        }
+            return DistanceFromOrigin(currentPosition);
+        }
 
-//        private static Vector AdvanceDirection(Vector direction, Tuple<Matrix, int> command) => Vector.Multiply(direction, command.Item1);
+        private static Vector2 AdvanceDirection(Vector2 direction, (Matrix3x2, int) command) => FakeMultiply(command.Item1, direction);
 
-//        private static int DistanceFromOrigin(Vector position) => (int)(Math.Abs(position.X) + Math.Abs(position.Y));
-//    }
-//}
+        private static int DistanceFromOrigin(Vector2 position) => (int)(Math.Abs(position.X) + Math.Abs(position.Y));
+
+        private static Vector2 FakeMultiply(Matrix3x2 m, Vector2 v) =>
+            new Vector2(m.M11 * v.X + m.M12 * v.Y, m.M21 * v.X + m.M22 * v.Y);
+    }
+}
