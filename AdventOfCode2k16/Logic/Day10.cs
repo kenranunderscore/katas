@@ -72,5 +72,7 @@
 
             return targetId;
         }
+
+        public int Part2 => outputs[0] * outputs[1] * outputs[2];
     }
 }
