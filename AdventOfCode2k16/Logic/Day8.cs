@@ -10,9 +10,9 @@
 
     public class Day8 : DayWithInput<IEnumerable<string>>
     {
-        private static readonly Regex rectMatcher = new Regex(@"rect (\d+)x(\d+)");
-        private static readonly Regex rotateColumnMatcher = new Regex(@"rotate column x=(\d+) by (\d+)");
-        private static readonly Regex rotateRowMatcher = new Regex(@"rotate row y=(\d+) by (\d+)");
+        private static readonly Regex rectMatcher = new Regex(@"rect (?<width>\d+)x(?<height>\d+)");
+        private static readonly Regex rotateColumnMatcher = new Regex(@"rotate column x=(?<column>\d+) by (?<shift>\d+)");
+        private static readonly Regex rotateRowMatcher = new Regex(@"rotate row y=(?<row>\d+) by (?<shift>\d+)");
 
         public Day8(IEnumerable<string> input) : base(input) { }
 
@@ -26,21 +26,21 @@
                     var match = rectMatcher.Match(s);
                     if (match.Success)
                     {
-                        screen.Rect(int.Parse(match.Groups[1].Value), int.Parse(match.Groups[2].Value));
+                        screen.Rect(int.Parse(match.Groups["width"].Value), int.Parse(match.Groups["height"].Value));
                         continue;
                     }
 
                     match = rotateColumnMatcher.Match(s);
                     if (match.Success)
                     {
-                        screen.RotateColumn(int.Parse(match.Groups[1].Value), int.Parse(match.Groups[2].Value));
+                        screen.RotateColumn(int.Parse(match.Groups["column"].Value), int.Parse(match.Groups["shift"].Value));
                         continue;
                     }
 
                     match = rotateRowMatcher.Match(s);
                     if (match.Success)
                     {
-                        screen.RotateRow(int.Parse(match.Groups[1].Value), int.Parse(match.Groups[2].Value));
+                        screen.RotateRow(int.Parse(match.Groups["row"].Value), int.Parse(match.Groups["shift"].Value));
                     }
                 }
 
