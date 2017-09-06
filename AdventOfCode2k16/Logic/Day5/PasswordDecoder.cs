@@ -1,14 +1,12 @@
-﻿namespace Logic
+﻿namespace Logic.Day5
 {
     using System.Linq;
     using System.Security.Cryptography;
     using System.Text;
 
-    public class Day5 : DayWithInput<string>
+    public class PasswordDecoder
     {
-        public Day5(string input) : base(input) { }
-
-        public string DecodePassword()
+        public string Decode(string input)
         {
             string password = string.Empty;
             int i = 0;
@@ -25,7 +23,7 @@
             return password;
         }
 
-        public string DecodePasswordPart2()
+        public string DecodePart2(string input)
         {
             char[] password = new char[8];
             int i = 0;

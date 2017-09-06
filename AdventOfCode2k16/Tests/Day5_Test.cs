@@ -1,6 +1,6 @@
 ﻿namespace Tests
 {
-    using Logic;
+    using Logic.Day5;
     using NUnit.Framework;
 
     [TestFixture]
@@ -9,15 +9,15 @@
         [Test]
         public void Day5_Part1()
         {
-            Day5 day5 = new Day5("uqwqemis");
-            Assert.That(day5.DecodePassword(), Is.EqualTo("1a3099aa"));
+            var decoder = new PasswordDecoder();
+            Assert.That(decoder.Decode("uqwqemis"), Is.EqualTo("1a3099aa"));
         }
 
         [Test]
         public void Day5_Part2()
         {
-            Day5 day5 = new Day5("uqwqemis");
-            Assert.That(day5.DecodePasswordPart2(), Is.EqualTo("694190cd"));
+            var decoder = new PasswordDecoder();
+            Assert.That(decoder.DecodePart2("uqwqemis"), Is.EqualTo("694190cd"));
         }
     }
 }
