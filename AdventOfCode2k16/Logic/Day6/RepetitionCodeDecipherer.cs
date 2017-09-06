@@ -1,19 +1,17 @@
-﻿namespace Logic
+﻿namespace Logic.Day6
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
 
-    public class Day6 : DayWithInput<IEnumerable<string>>
+    public class RepetitionCodeDecipherer
     {
-        public Day6(IEnumerable<string> input) : base(input) { }
+        public string DeciperMessagePart1(IEnumerable<string> input) => DecipherMessage(input, MostFrequentCharacter);
 
-        public string DeciperMessagePart1() => DecipherMessage(MostFrequentCharacter);
+        public string DeciperMessagePart2(IEnumerable<string> input) => DecipherMessage(input, LeastFrequentCharacter);
 
-        public string DeciperMessagePart2() => DecipherMessage(LeastFrequentCharacter);
-
-        private string DecipherMessage(Func<IEnumerable<char>, char> columnCharacterSelector)
+        private string DecipherMessage(IEnumerable<string> input, Func<IEnumerable<char>, char> columnCharacterSelector)
         {
             int columnCount = input.First().Length;
             StringBuilder sb = new StringBuilder(columnCount);
