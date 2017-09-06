@@ -16,5 +16,15 @@
             interpreter.Run();
             Assert.That(interpreter.Registers["a"], Is.EqualTo(318009));
         }
+
+        [Test]
+        public void Day12_Part2()
+        {
+            var interpreter = new AssembunnyInterpreter();
+            interpreter.Input = Utils.ReadLines("day12_data.txt").ToList();
+            interpreter.Registers["c"] = 1;
+            interpreter.Run();
+            Assert.That(interpreter.Registers["a"], Is.EqualTo(9227663));
+        }
     }
 }

@@ -17,7 +17,7 @@
                 { "d", 0 },
             };
 
-        public IReadOnlyDictionary<string, int> Registers => registers;
+        public IDictionary<string, int> Registers => registers;
 
         public IReadOnlyList<string> Input { get; set; }
 
