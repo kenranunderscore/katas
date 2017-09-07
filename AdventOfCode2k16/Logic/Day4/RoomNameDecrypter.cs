@@ -1,21 +1,20 @@
-﻿namespace Logic
+﻿namespace Logic.Day4
 {
     using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
 
-    public class Day4 : DayWithInput<IEnumerable<string>>
+    public class RoomNameDecrypter
     {
-        public Day4(IEnumerable<string> input) : base(input) { }
+        public int SumOfSectorIdsOfRealRooms(IEnumerable<string> rooms) =>
+            rooms.Where(IsRoomReal).Sum(ExtractSectorIdFromRoom);
 
-        public int SumOfSectorIdsOfRealRooms => input
-            .Where(IsRoomReal)
-            .Sum(ExtractSectorIdFromRoom);
-
-        public int NorthPoleStorageSectorId => ExtractSectorIdFromRoom(input
-            .Where(IsRoomReal)
-            .Select(DecryptRealRoom)
-            .Single(r => r.Contains("northpole")));
+        public int NorthPoleStorageSectorId(IEnumerable<string> rooms) =>
+            ExtractSectorIdFromRoom(
+                rooms
+                    .Where(IsRoomReal)
+                    .Select(DecryptRealRoom)
+                    .Single(r => r.Contains("northpole")));
 
         internal static string DecryptRealRoom(string room)
         {
