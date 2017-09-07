@@ -1,12 +1,11 @@
-﻿namespace Logic
+﻿namespace Logic.Day10
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics;
     using System.Linq;
     using System.Text.RegularExpressions;
 
-    public class Day10 : DayWithInput<IEnumerable<string>>
+    public class BotController
     {
         Regex valueRegex = new Regex(@"value (?<val>\d+) goes to bot (?<id>\d+)");
         Regex botRegex = new Regex(@"bot (?<id>\d+) gives low to (?<lowTargetType>(bot|output)) (?<lowId>\d+) and high to (?<highTargetType>(bot|output)) (?<highId>\d+)");
@@ -14,13 +13,11 @@
         private readonly Dictionary<int, Action<int>> bots = new Dictionary<int, Action<int>>();
         private readonly int[] outputs = new int[21];
 
-        public Day10(IEnumerable<string> input) : base(input) { }
-
-        public int FindBotHandlingNumbers(int min, int max)
+        public int FindBotHandlingNumbers(IEnumerable<string> orders, int min, int max)
         {
             int targetId = -1;
 
-            foreach (var match in input.Select(l => botRegex.Match(l)).Where(m => m.Success))
+            foreach (var match in orders.Select(l => botRegex.Match(l)).Where(m => m.Success))
             {
                 int id = int.Parse(match.Groups["id"].Value);
                 List<int> numbers = new List<int>();
@@ -63,7 +60,7 @@
                 };
             }
 
-            foreach (var match in input.Select(l => valueRegex.Match(l)).Where(m => m.Success))
+            foreach (var match in orders.Select(l => valueRegex.Match(l)).Where(m => m.Success))
             {
                 int id = int.Parse(match.Groups["id"].Value);
                 int value = int.Parse(match.Groups["val"].Value);
