@@ -1,14 +1,13 @@
-﻿namespace Logic
+﻿namespace Logic.Day9
 {
     using System.Linq;
     using System.Text;
-    using System.Text.RegularExpressions;
 
-    public static class Day9
+    public class DataDecompressor
     {
-        public static string Decompress(string input)
+        public string Decompress(string input)
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             int i = 0;
             while (i < input.Length)
             {
@@ -33,7 +32,7 @@
             return sb.ToString();
         }
 
-        public static long FullyDecompressedLength(string input)
+        public long FullyDecompressedLength(string input)
         {
             long length = 0;
             int i = 0;
@@ -62,7 +61,7 @@
 
         private static string Repeat(string s, int count)
         {
-            StringBuilder sb = new StringBuilder(count * s.Length);
+            var sb = new StringBuilder(count * s.Length);
             for (int i = 0; i < count; i++)
             {
                 sb.Append(s);
