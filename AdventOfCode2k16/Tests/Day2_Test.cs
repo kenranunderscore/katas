@@ -1,6 +1,6 @@
 ﻿namespace Tests
 {
-    using Logic;
+    using Logic.Day2;
     using NUnit.Framework;
     using Tests.Inputs;
 
@@ -11,16 +11,16 @@
         public void Day2_Part1()
         {
             var input = Utils.ReadLines("day2_data.txt");
-            Day2 day2 = new Day2(input);
-            Assert.That(day2.DecipherCode(Day2.NumpadMapping), Is.EqualTo("92435"));
+            var day2 = new BathroomCodeDetector();
+            Assert.That(day2.DecipherCode(input, BathroomCodeDetector.NumpadMapping), Is.EqualTo("92435"));
         }
 
         [Test]
         public void Day2_Part2()
         {
             var input = Utils.ReadLines("day2_data.txt");
-            Day2 day2 = new Day2(input);
-            Assert.That(day2.DecipherCode(Day2.Part2Mapping), Is.EqualTo("C1A88"));
+            var day2 = new BathroomCodeDetector();
+            Assert.That(day2.DecipherCode(input, BathroomCodeDetector.Part2Mapping), Is.EqualTo("C1A88"));
         }
     }
 }

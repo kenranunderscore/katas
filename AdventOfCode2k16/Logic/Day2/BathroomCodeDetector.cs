@@ -1,10 +1,10 @@
-﻿namespace Logic
+﻿namespace Logic.Day2
 {
     using System.Collections.Generic;
     using System.Linq;
     using System.Numerics;
 
-    public class Day2 : DayWithInput<IEnumerable<string>>
+    public class BathroomCodeDetector
     {
         public static readonly IReadOnlyDictionary<string, Vector2> NumpadMapping
             = new Dictionary<string, Vector2>
@@ -47,9 +47,7 @@
                 { 'R', new Vector2(1, 0) }
             };
 
-        public Day2(IEnumerable<string> lines) : base(lines) { }
-
-        public string DecipherCode(IReadOnlyDictionary<string, Vector2> mapping)
+        public string DecipherCode(IEnumerable<string> input, IReadOnlyDictionary<string, Vector2> mapping)
         {
             string currentCode = string.Empty;
             foreach (string line in input)
