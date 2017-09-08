@@ -1,6 +1,7 @@
 ﻿namespace Tests
 {
     using Logic;
+    using Logic.Day1;
     using NUnit.Framework;
 
     [TestFixture]
@@ -11,15 +12,15 @@
         [Test]
         public void Day1_Part1()
         {
-            Day1 day1 = new Day1(Input);
-            Assert.That(day1.Distance(), Is.EqualTo(301));
+            var calc = new EasterBunnyDistanceCalculator();
+            Assert.That(calc.Distance(Input), Is.EqualTo(301));
         }
 
         [Test]
         public void Day1_Part2()
         {
-            Day1 day1 = new Day1(Input);
-            Assert.That(day1.DistanceToFirstDoublyVisitedLocation(), Is.EqualTo(130));
+            var calc = new EasterBunnyDistanceCalculator();
+            Assert.That(calc.DistanceToFirstDoublyVisitedLocation(Input), Is.EqualTo(130));
         }
     }
 }

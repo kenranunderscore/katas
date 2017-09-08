@@ -1,18 +1,16 @@
-﻿namespace Logic
+﻿namespace Logic.Day1
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Numerics;
 
-    public class Day1 : DayWithInput<string>
+    public class EasterBunnyDistanceCalculator
     {
         private static readonly Matrix3x2 right = new Matrix3x2(0, -1, 1, 0, 0, 0);
         private static readonly Matrix3x2 left = new Matrix3x2(0, 1, -1, 0, 0, 0);
 
-        public Day1(string input) : base(input) { }
-
-        public int Distance()
+        public int Distance(string input)
         {
             var currentDirection = new Vector2(0, 1);
             var currentPosition = new Vector2(0, 0);
@@ -30,7 +28,7 @@
             return DistanceFromOrigin(currentPosition);
         }
 
-        public int DistanceToFirstDoublyVisitedLocation()
+        public int DistanceToFirstDoublyVisitedLocation(string input)
         {
             var currentDirection = new Vector2(0, 1);
             var currentPosition = new Vector2(0, 0);
