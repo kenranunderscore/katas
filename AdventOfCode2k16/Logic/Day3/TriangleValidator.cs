@@ -1,14 +1,12 @@
-﻿namespace Logic
+﻿namespace Logic.Day3
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
 
-    public class Day3 : DayWithInput<IEnumerable<string>>
+    public class TriangleValidator
     {
-        public Day3(IEnumerable<string> input) : base(input) { }
-
-        public int NoOfValidTriangles => input
+        public int NumberOfValidTriangles(IEnumerable<string> input) => input
             .Select(l => l.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries))
             .Select(l => l.Select(int.Parse).ToArray())
             .Select(l => new Triangle
@@ -19,7 +17,7 @@
             })
             .Count(t => t.IsValid);
 
-        public int NoOfValidTrianglesInColumns =>
+        public int NumberOfValidTrianglesInColumns(IEnumerable<string> input) =>
             NoOfValidTrianglesInColumn(GetColumn(input, 0))
                 + NoOfValidTrianglesInColumn(GetColumn(input, 1))
                 + NoOfValidTrianglesInColumn(GetColumn(input, 2));
