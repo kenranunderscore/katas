@@ -368,3 +368,6 @@ __pycache__/
 # Cake - Uncomment if you are using it
 # tools/**
 # !tools/packages.config
+
+aoc2k18/.cpcache
+aoc2k18/.nrepl-port
